@@ -7,6 +7,7 @@ Checkout, build and run a sample application on your local machine.  Throughout 
 
 + IDE (Spring Tool Suite, Eclipse, IntelliJ)
 + Java Runtime Installed
++ Git
 + PostMan (Optional)
 
 ## Checkout the Source Code
@@ -17,7 +18,7 @@ Checkout, build and run a sample application on your local machine.  Throughout 
 
 1. Cloning the repository will download the workshop content as well.  Navigate to the `starter-app`.
 
-    `$ cd starter-app`
+    `$ cd az-cnd-workshop/starter-app`
 
 1. Build the project and generate the Spring Boot jar file
 

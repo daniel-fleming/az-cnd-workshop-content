@@ -18,7 +18,7 @@ Add external config to the sample app.
 
 1. From the command line type:
 
-    `$ cf create-service p-service-registry trial <YOUR-CONFIG-SERVER-NAME>`
+    `$ cf create-service p-config-server trial <YOUR-CONFIG-SERVER-NAME>`
 
 1. Navigate to `Apps Manager` and look in your space.  Your config server instance should show in the `Services` tab.  
 
