@@ -4,7 +4,7 @@
 
 <meta name="course version" content="2.0.0">
 <meta name="generator" content="null:null:null, https://github.com/platform-acceleration-lab/shipkin">
-<meta name="generated on" content="2018-11-07T21:44:17.956898Z">
+<meta name="generated on" content="2018-11-07T21:44:17.938191Z">
 <meta name="theme-color" content="#003152">
 
 
@@ -144,88 +144,72 @@
 
     <div id="content" class="container">
         <article>
- <h1 id="blue-green-deployment">Blue Green Deployment</h1>
+ <h1 id="pcf-metrics">PCF Metrics</h1>
 <h2 id="goal">Goal</h2>
-<p>Demonstrate how to deploy an application with zero downtime on PCF.</p>
+<p>Demonstrate capabilities of PCF Metrics.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>Working PCF Environment</li>
-<li>Sample App</li>
 </ul>
-<h2 id="blue-green-deployment-with-pcf">Blue-Green Deployment with PCF</h2>
+<h2 id="pcf-runtime">PCF Runtime</h2>
 <ol>
 <li>
-<p>Use the Cloud Foundry Command Line Interface (cf CLI) to push the application. Name the application “Blue” with the subdomain “demo-time.”</p>
-<p><code>$ cf push Blue -n demo-time</code></p>
+<p>In your browser, navigate to <code>https://run.pivotal.io</code></p>
+</li>
+<li>
+<p>Log in with the credentials provided by your facilitator.</p>
+</li>
+<li>
+<p>From the <code>Home</code> screen choose your <code>Org</code>.</p>
 </li>
 </ol>
-<p>As shown in the graphic below:</p>
-<p>Blue is now running on Cloud Foundry.
-The CF Router sends all traffic for demo-time.example.com traffic to Blue.</p>
-<p><img src="blue.png" alt="'Blue'" class="figure" /></p>
+<p><img src="home.png" alt="'Home'" class="figure" /></p>
+<ol start="4">
+<li>Once you have selected an <code>Org</code>, you will see a list of <code>Spaces</code>.  Each <code>Space</code> contains multiple <code>Apps</code>, <code>Services</code> and <code>Routes</code>.  Select your <code>Space</code> from the list.</li>
+</ol>
+<p><img src="org.png" alt="'Org'" class="figure" /></p>
+<ol start="5">
+<li>Click on the <code>sample-app</code> app in the list.  To the right of the screen you will see a link titled <code>View in PCF Metrics</code>.  Click that link to open the window.</li>
+</ol>
+<p><img src="pcf-metrics.png" alt="'PCF Metrics'" class="figure" /></p>
+<h1 id="metrics">Metrics</h1>
 <ol>
 <li>
-<p>Now make a change to the application. First, replace the word “Blue” on the web page with “Green,” then rebuild the source file for the application. Run <code>cf push</code> again, but use the name “Green” for the application and provide a different subdomain to create a temporary route:</p>
-<p><code>$ cf push Green -n demo-time-temp</code></p>
-</li>
-</ol>
-<p>After this push:</p>
-<p>Two instances of our application are now running on Cloud Foundry: the original Blue and the updated Green.
-The CF Router continues sending all traffic for <code>demo-time.example.com</code> to Blue. The router now also sends any traffic for <code>demo-time-temp.example.com</code> to Green.</p>
-<p><img src="blue-green.png" alt="'Blue-Green'" class="figure" /></p>
-<ol>
-<li>
-<p>Now that both apps are up and running, switch the router so all incoming requests go to the Green app and the Blue app. Do this by mapping the original URL route (demo-time.example.com) to the Green application using the <code>cf map-route</code> command.</p>
-<pre><code>$ cf map route Green example.com -n demo-time
-Binding demo-time.example.com to Green... OK
-</code></pre>
-</li>
-</ol>
-<p>After the <code>cf map-route</code> command :</p>
+<p>On the main screen you can view metrics for 7 components:</p>
 <ul>
-<li>
-<p>The CF Router continues sending traffic for demo-time-temp.example.com to Green.</p>
-</li>
-<li>
-<p>Within a few seconds, the CF Router begins load balancing traffic for demo-time.example.com between Blue and Green.</p>
-</li>
+<li>Average Request Latency</li>
+<li>Requests per Minute</li>
+<li>Request Errors per Minute</li>
+<li>CPU Usage</li>
+<li>Disk</li>
+<li>Memory</li>
+<li>App Events</li>
 </ul>
-<p><img src="map.png" alt="'Map'" class="figure" /></p>
-<ol>
+</li>
 <li>
-<p>Once you verify Green is running as expected, stop routing requests to Blue using the <code>cf unmap-route</code> command:</p>
-<pre><code>$ cf unmap-route Blue example.com -n demo-time
-Unbinding demo-time.example.com from blue... OK
-</code></pre>
+<p>By clicking the arrow button in the top right of the screen you can switch to a real time streaming view.  Click the button to switch perspectives.</p>
 </li>
 </ol>
-<p>After <code>cf unmap-route</code> command:</p>
-<p>The CF Router stops sending traffic to Blue. Now all traffic for <code>demo-time.example.com</code> is sent to Green:</p>
-<p><img src="unmap.png" alt="'Unmap'" class="figure" /></p>
-<ol>
-<li>You can now use <code>cf unmap-route</code> to remove the route <code>demo-time-temp.example.com</code> from Green. The route can be deleted using <code>cf delete-route</code> or reserved for later use. You can also decommission Blue, or keep it in case you need to roll back your changes.</li>
+<p><img src="streaming.png" alt="'Streaming" class="figure" /></p>
+<ol start="3">
+<li>Press the button again to switch back to <code>Static</code> view.  By adjusting the slider you can modify the date range.  Select the slider and pull it to the left to broaden the data range.</li>
 </ol>
-<p><img src="green.png" alt="'Green'" class="figure" /></p>
-<h2 id="blue-green-deploy-sample-app">Blue-Green Deploy Sample App</h2>
+<p><img src="slider.png" alt="'Slider'" class="figure" /></p>
+<h1 id="logs">Logs</h1>
 <ol>
 <li>
-<p>We will use a plugin for the CF CLI tool to automate a blue-green deployment.  Let's start by getting the plugin from the <code>CF-Community</code> repository:</p>
-<pre><code>$ cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
-$ cf install-plugin blue-green-deploy -r CF-Community
-</code></pre>
+<p>At the bottom of the PCF Metrics homepage there is a tab labled <code>Logs</code>.  Click the tab to expand the box.</p>
 </li>
 <li>
-<p>Navigate to the <code>starter-app</code> home directory:</p>
-<p><code>$ cd starter-app</code></p>
-</li>
-<li>
-<p>Use the plugin to perform a blue-green deploy:</p>
-<p><code>$ cf blue-green-deploy sample-app</code></p>
-</li>
-<li>
-<p>Notice as the plugin creates a new version of the application called <code>sample-app-new</code>.  Now you can create your own blue-green deployments on your mission critical workloads!</p>
+<p>In this view you can see two weeks history of application logs.  From this view you can:</p>
+<ul>
+<li>Download log files</li>
+<li>Search logs by keyword</li>
+<li>Highlight keywords</li>
+</ul>
 </li>
 </ol>
+<p><img src="logs.png" alt="'Logs'" class="figure" /></p>
          </article>
         <div class="sidebar-container">
 <nav id="sidebar">
@@ -237,7 +221,7 @@ $ cf install-plugin blue-green-deploy -r CF-Community
 
 <ul>
         <li>
-        <a href="#blue-green-deployment">Blue Green Deployment</a>
+        <a href="#pcf-metrics">PCF Metrics</a>
 
 <ul>
         <li>
@@ -249,14 +233,18 @@ $ cf install-plugin blue-green-deploy -r CF-Community
 
         </li>
         <li>
-        <a href="#blue-green-deployment-with-pcf">Blue-Green Deployment with PCF</a>
-
-        </li>
-        <li>
-        <a href="#blue-green-deploy-sample-app">Blue-Green Deploy Sample App</a>
+        <a href="#pcf-runtime">PCF Runtime</a>
 
         </li>
 </ul>
+        </li>
+        <li>
+        <a href="#metrics">Metrics</a>
+
+        </li>
+        <li>
+        <a href="#logs">Logs</a>
+
         </li>
 </ul>
     </div>

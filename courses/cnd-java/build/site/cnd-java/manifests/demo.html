@@ -4,7 +4,7 @@
 
 <meta name="course version" content="2.0.0">
 <meta name="generator" content="null:null:null, https://github.com/platform-acceleration-lab/shipkin">
-<meta name="generated on" content="2018-11-07T16:58:53.897307Z">
+<meta name="generated on" content="2018-11-07T21:44:17.946586Z">
 <meta name="theme-color" content="#003152">
 
 
@@ -164,11 +164,11 @@
 <li>
 <p>Create the following content in your <code>manifest.yml</code> file.</p>
 <pre><code>applications:
-    name: sample-app
-    random-route: true
-    memory: 1G
-    instances: 1
-    path: target/demo-0.0.1-SNAPSHOT.jar
+- name: sample-app
+  memory: 1G
+  instances: 1
+  path: target/demo-0.0.1-SNAPSHOT.jar
+  random-route: true
 </code></pre>
 </li>
 <li>
