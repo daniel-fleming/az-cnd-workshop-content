@@ -8,6 +8,7 @@ Checkout, build and run a sample application on your local machine.  Throughout 
 + IDE (Spring Tool Suite, Eclipse, IntelliJ)
 + Java Runtime Installed
 + Git
++ Maven (Optional)
 + PostMan (Optional)
 
 ## Checkout the Source Code

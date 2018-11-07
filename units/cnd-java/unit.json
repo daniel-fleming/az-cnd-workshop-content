@@ -59,12 +59,12 @@
           ]
         },
         {
-          "title": "Configuration Server",
+          "title": "PCF Metrics",
           "topic": "Cloud Native",
           "materials": [
             {
               "title": "demo",
-              "location": "configuration-server/demo.html"
+              "location": "pcf-metrics/demo.html"
             }
           ]
         },        

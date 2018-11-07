@@ -17,7 +17,7 @@ Overview of PCF environment and components.
 
 !['Home'](home.png)
 
-4. Once selecting an `Org`, you will see a list of `Spaces`.  Each `Space` contains multiple `Apps`, `Services` and `Routes`.
+4. Once you have selected an `Org`, you will see a list of `Spaces`.  Each `Space` contains multiple `Apps`, `Services` and `Routes`.
 
 !['Org'](org.png)
 
