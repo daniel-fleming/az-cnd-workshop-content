@@ -76,9 +76,9 @@ Add external config to the sample app.
 
     ```
     <dependency>
-    	<groupId>org.springframework.cloud</groupId>
-    	<artifactId>spring-cloud-starter-config</artifactId>
-    	<version>2.0.2.RELEASE</version>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-config</artifactId>
+      <version>2.0.2.RELEASE</version>
 	</dependency>
     ```
 
@@ -86,11 +86,13 @@ Add external config to the sample app.
 
     `$ mvn clean package -DskipTests`
 
-1. When you deploy your app to PCF it will automatically register with your Eureka Discovery service.
+1. When you deploy your app to PCF it will automatically register with your Config Server instance.
+
+    `$ cf push`
 
 1. Run the following command to view your config server variable:
 
-    `$ curl https://<YOUR-APP-URL>/which-env`
+    `$ curl https://<YOUR-APP-FQDN>/which-env`
 
 1. You should see the value `dev` returned.
 

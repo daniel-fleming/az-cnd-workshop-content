@@ -27,4 +27,11 @@ Add a manifest file to the sample app to prepare it for deployment to PCF.
         path: target/demo-0.0.1-SNAPSHOT.jar
     ```
 
-1. Providing these deployment instructions tells PCF how to deploy your app.
+1. Providing these deployment instructions tells PCF how to deploy your app.  Now that we have a deployment manifest, let's deploy our app to PCF.
+
+    ```
+    $ cf login -a api.run.pivotal.io
+    $ cf push
+    ```
+
+1. Your app is now deployed to PCF!  Navigate to `Apps Manager` to view your app as it deploys. 

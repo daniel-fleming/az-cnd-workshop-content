@@ -43,18 +43,18 @@ Add actuator metrics to our sample app.
 
     `$ mvn clean package`
 
-1. Run the project on your local machine.
+1. Push the app to PCF.
 
-    `$ java -jar target/demo-0.0.1-SNAPSHOT.jar`
+    `$ cf push`
 
 1. In a separate terminal window type the following command:
 
-    `$ curl http://localhost:8080/actuator/health`
+    `$ curl http://<YOUR-APP-FQDN>/actuator/health`
 
 1. You should see the following output verifying that your app is 'UP'.
 
     ```
-    $ curl localhost:8080/actuator/health
+    $ curl <YOUR-APP-FQDN>/actuator/health
     {"status":"UP"}
     ```
 
@@ -70,12 +70,12 @@ Add actuator metrics to our sample app.
 
 1. Stop your app instance and run the following command:
     
-    `$ mvn clean package && java -jar target/demo-0.0.1-SNAPSHOT.jar`
+    `$ mvn clean package && cf push`
 
 1. In your terminal window type the following command:
     
-    `$ curl http://localhost:8080/actuator/env`
+    `$ curl http://<YOUR-APP-FQDN>/actuator/env`
 
 1. All endpoints except `health` and `info` are now secured.  This is a best practice for production deployments.
 
-1. Browse https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html to view a list of all Actuator endpoints.
+1. Browse [Production Ready Endpoints](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html) to view a list of all Actuator endpoints.

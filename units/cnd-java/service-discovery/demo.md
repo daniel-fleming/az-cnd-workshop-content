@@ -62,15 +62,17 @@ Add service discovery to the sample app.
 
     ```
     <dependency>
-		<groupId>io.pivotal.spring.cloud</groupId>
-		<artifactId>spring-cloud-services-starter-service-registry</artifactId>
-        <version>2.0.2.RELEASE</version>
+	  <groupId>io.pivotal.spring.cloud</groupId>
+	  <artifactId>spring-cloud-services-starter-service-registry</artifactId>
+      <version>2.0.2.RELEASE</version>
 	</dependency>
     ```
 
-1. Build the app using the following command:
+1. Build the app using the following command.  Tests won't work locally with service discovery enabled so we will skip them for the workshop.  In a real scenario, you would set up `Spring Profiles` to differentiate between levels:
 
     `$ mvn clean package -DskipTests`
 
 1. When you deploy your app to PCF it will automatically register with your Eureka Discovery service.
+
+    `$ cf push`
 
