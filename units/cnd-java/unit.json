@@ -39,6 +39,16 @@
           ]
         },
         {
+          "title": "App Scaling",
+          "topic": "PCF",
+          "materials": [
+            {
+              "title": "demo",
+              "location": "scaling/demo.html"
+            }
+          ]
+        },
+        {
           "title": "Spring Boot Actuator",
           "topic": "Cloud Native",
           "materials": [
