@@ -1,4 +1,4 @@
-# Manifests
+# Spring Cloud Config Server
 
 ## Goal
 Add external config to the sample app.

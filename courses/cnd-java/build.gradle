@@ -15,7 +15,7 @@ apply plugin: "io.pivotal.pal.shipkin.plugin"
 
 shipkin {
     
-    baseName = "cloud-native-java-workshop"
+    baseName = "az-cnd-workshop"
     courseVersion = "2.0.0"
     courseTitle = "Cloud Native Java Workshop"
     feedbackUrl = "https://goo.gl/forms/kBPRh9DCTMJWao7d2?entry.31443528=https://cnd-java-workshop-v1.pal.pivotal.io/"
