@@ -1,4 +1,4 @@
-# Manifests
+# Service Discovery
 
 ## Goal
 Add service discovery to the sample app.

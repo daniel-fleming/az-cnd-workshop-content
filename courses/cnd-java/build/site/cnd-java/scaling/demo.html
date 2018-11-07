@@ -4,7 +4,7 @@
 
 <meta name="course version" content="2.0.0">
 <meta name="generator" content="null:null:null, https://github.com/platform-acceleration-lab/shipkin">
-<meta name="generated on" content="2018-11-07T22:07:54.914180Z">
+<meta name="generated on" content="2018-11-07T22:07:54.895369Z">
 <meta name="theme-color" content="#003152">
 
 
@@ -144,41 +144,34 @@
 
     <div id="content" class="container">
         <article>
- <h1 id="manifests">Manifests</h1>
+ <h1 id="scaling-your-apps">Scaling your Apps</h1>
 <h2 id="goal">Goal</h2>
-<p>Add a manifest file to the sample app to prepare it for deployment to PCF.</p>
+<p>Demonstrate scaling capabilities of PCF.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li>IDE (Spring Tool Suite, Eclipse, IntelliJ)</li>
-<li>Local Copy of Sample Project</li>
+<li>Working PCF Environment</li>
+<li>CF CLI</li>
 </ul>
-<h2 id="navigate-to-the-root-directory">Navigate to the root directory</h2>
+<h2 id="scaling-from-the-command-line">Scaling from the Command Line</h2>
 <ol>
 <li>
-<p>Navigate to the <code>starter-app</code>.</p>
-<p><code>$ cd starter-app</code></p>
-</li>
-<li>
-<p>Create a new file <code>manifest.yml</code> in your editor of choice.</p>
-</li>
-<li>
-<p>Create the following content in your <code>manifest.yml</code> file.</p>
-<pre><code>applications:
-- name: sample-app
-  memory: 1G
-  instances: 1
-  path: target/demo-0.0.1-SNAPSHOT.jar
-  random-route: true
+<p>Open a terminal window and type:</p>
+<pre><code>$ cf apps
+name                 requested state   instances   memory   disk   urls
+sample-app           started           1/1         1G       1G     
 </code></pre>
+<p>Notice the column that shows the current number of instances.  For each of our apps we currently have a single instance deployed.  Let's change that!</p>
 </li>
 <li>
-<p>Providing these deployment instructions tells PCF how to deploy your app.  Now that we have a deployment manifest, let's deploy our app to PCF.</p>
-<pre><code>$ cf login -a api.run.pivotal.io
-$ cf push
+<p>In your terminal, type:</p>
+<p><code>$ cf scale -i 2 sample-app</code></p>
+</li>
+<li>
+<p>Type <code>$ cf apps</code> in your terminal again and now you will see 2 instances of your application!</p>
+<pre><code>$ cf apps
+name                 requested state   instances   memory   disk   urls
+sample-app           started           2/2         1G       1G     
 </code></pre>
-</li>
-<li>
-<p>Your app is now deployed to PCF!  Navigate to <code>Apps Manager</code> to view your app as it deploys.</p>
 </li>
 </ol>
          </article>
@@ -192,7 +185,7 @@ $ cf push
 
 <ul>
         <li>
-        <a href="#manifests">Manifests</a>
+        <a href="#scaling-your-apps">Scaling your Apps</a>
 
 <ul>
         <li>
@@ -204,7 +197,7 @@ $ cf push
 
         </li>
         <li>
-        <a href="#navigate-to-the-root-directory">Navigate to the root directory</a>
+        <a href="#scaling-from-the-command-line">Scaling from the Command Line</a>
 
         </li>
 </ul>
