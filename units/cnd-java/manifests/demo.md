@@ -20,11 +20,11 @@ Add a manifest file to the sample app to prepare it for deployment to PCF.
 
     ```
     applications:
-        name: sample-app
-        random-route: true
-        memory: 1G
-        instances: 1
-        path: target/demo-0.0.1-SNAPSHOT.jar
+    - name: sample-app
+      memory: 1G
+      instances: 1
+      path: target/demo-0.0.1-SNAPSHOT.jar
+      random-route: true
     ```
 
 1. Providing these deployment instructions tells PCF how to deploy your app.  Now that we have a deployment manifest, let's deploy our app to PCF.
