@@ -1,4 +1,4 @@
-# Manifests
+# Spring Boot Actuator
 
 ## Goal
 Add actuator metrics to our sample app.
@@ -27,11 +27,10 @@ Add actuator metrics to our sample app.
     ...
     ```
 
-1. Create a new file called `application.yml` in `src/main/resources`.
-
-1. Add the following to the `application.yml` file:
+1. Add the following to the bottom of the `application.yml` file:
 
     ```
+    ...
     management:
       endpoints:
         web:
