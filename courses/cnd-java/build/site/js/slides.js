@@ -1,8 +1,4 @@
 (function () {
-    var keyCodes = {
-        ENTER: 13,
-        ESCAPE: 27
-    };
 
     var slides = document.querySelectorAll("[data-slide]");
 
@@ -17,36 +13,31 @@
     instructorModeCheckbox.checked = isInstructorMode();
     instructorModeCheckbox.addEventListener("change", setInstructorMode);
 
-    window.addEventListener("keyup", (function (e) {
-        if (isInstructorMode() && !isTextInput(e.target)) {
+    window.addEventListener("keyup", (function (event) {
+        if (isInstructorMode() && !isTextInput(event.target)) {
 
-            var code = e.which;
-            var keypress = String.fromCharCode(code);
+            var key = event.code == "Slash" ? "?" : event.key  // special treatment for help key, so it doesn't need shift held
 
-            if (slideKeys.includes(keypress)) {
-                e.preventDefault();
-                hideSlides();
-                showSlide(keypress);
-            }
-
-            if (keypress === "0") {
-                e.preventDefault();
+            if (key === "0") {
+                event.preventDefault();
                 stopGong();
                 gong.play()
             }
-
-            if (keypress === "8") {
+            else if (key === "8") {
                 setEndInMinutes(90)
             }
-
-            if (keypress === "9") {
+            else if (key === "9") {
                 setEndInMinutes(15)
             }
-
-            if (code === keyCodes.ENTER || code === keyCodes.ESCAPE) {
-                e.preventDefault();
+            else if (key === "x" || key === "Enter" || key === "Escape") {
+                event.preventDefault();
                 stopGong();
                 hideSlides();
+            }
+            else if (slideKeys.includes(key)) {
+                event.preventDefault();
+                hideSlides();
+                showSlide(key);
             }
         }
     }));
@@ -55,8 +46,8 @@
         return target.tagName === "INPUT" && target.type !== "checkbox";
     }
 
-    function showSlide(keypress) {
-        document.querySelectorAll('[data-slide="' + keypress + '"]').forEach(function (element) {
+    function showSlide(key) {
+        document.querySelectorAll('[data-slide="' + key + '"]').forEach(function (element) {
             element.style.display = "flex";
         });
     }
@@ -64,7 +55,7 @@
     function setEndInMinutes(delay) {
         var end = new Date();
         end.setMinutes(end.getMinutes() + delay);
-        var endString = hours(end) + ":" + minutes(end) + meridean(end);
+        var endString = hours(end) + ":" + minutes(end) + meridian(end);
 
         document.querySelectorAll("[data-time]").forEach(function (element) {
             element.value = endString;
@@ -93,18 +84,14 @@
     function minutes(time) {
         var minutes = time.getMinutes();
 
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-
-        return minutes;
+        return minutes < 10 ? "0" + minutes : minutes;
     }
 
     function hours(time) {
         return (time.getHours() - 1) % 12 + 1;
     }
 
-    function meridean(time) {
+    function meridian(time) {
         if (time.getHours() < 12) {
             return "am";
         } else {

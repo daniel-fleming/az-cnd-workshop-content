@@ -1,0 +1,7 @@
+---
+applications:
+- name: az-cnd-workshop-v2-review
+  memory: 64M
+  buildpack: staticfile_buildpack
+  env:
+    FORCE_HTTPS: true

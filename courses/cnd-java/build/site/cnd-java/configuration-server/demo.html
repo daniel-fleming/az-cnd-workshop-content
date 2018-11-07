@@ -4,8 +4,8 @@
 
 <meta name="course version" content="2.0.0">
 <meta name="generator" content="null:null:null, https://github.com/platform-acceleration-lab/shipkin">
-<meta name="generated on" content="2018-11-07T15:26:47.512469Z">
-<meta name="theme-color" content="#216eb9">
+<meta name="generated on" content="2018-11-07T16:58:53.924246Z">
+<meta name="theme-color" content="#003152">
 
 
 <meta charset="utf-8">
@@ -23,57 +23,57 @@
 <style>
 
     #header {
-        border-color: #216eb9;
-        background-color: #216eb9;
+        border-color: #00A79D;
+        background-color: #003152;
     }
 
     .disclaimer {
-        background-color: #216eb9;
+        background-color: #003152;
     }
 
     footer {
-        background-color: #216eb9;
+        background-color: #003152;
     }
 
     .label.label-default {
-        background-color: #216eb9;
+        background-color: #1B78B3;
     }
 
     a {
-        color: #216eb9;
+        color: #1B78B3;
     }
 
     th {
-        background-color: #216eb9;
-        border-color: #216eb9;
+        background-color: #003152;
+        border-color: #003152;
     }
 
     blockquote:before {
-        color: #216eb9;
+        color: #003152;
     }
 
     .label.label-default:hover, .label.label-default:focus {
-        background-color: #307dc8;
+        background-color: #2a87c2;
     }
 
     a:hover, a:focus {
-        color: #307dc8;
+        color: #2a87c2;
     }
 
     .slide {
-        color: #216eb9;
+        color: #003152;
     }
 
     .slide h2, .slide label {
-        color: #216eb9;
+        color: #1B78B3;
     }
 
     .slide input {
-        color: rgba(33, 110, 185, 0.65);
+        color: rgba(0, 49, 82, 0.65);
     }
 
     .face path {
-        fill: #216eb9;
+        fill: #1B78B3;
     }
 
     body {
@@ -112,10 +112,17 @@
 <body>
 
 
+<style>
+    #header {
+        background: linear-gradient(rgba(0, 49, 82, 0.65), rgba(0, 49, 82, 0.65)), url(../../industrials.jpg) no-repeat center;
+        background-size: cover;
+
+    }
+</style>
 
 <header id="header">
     <div class="container">
-        <img src="../../cnd-java-workshop.svg" alt="Cloud Native Java Workshop logo">
+        <img src="../../pcf.png" alt="Cloud Native Java Workshop logo">
 
         <div>
             <a href="../..">
@@ -220,9 +227,9 @@
 <li>
 <p>Open <code>pom.xml</code> in your browser and add the following dependency:</p>
 <pre><code>&lt;dependency&gt;
-	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-	&lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;
-	&lt;version&gt;2.0.2.RELEASE&lt;/version&gt;
+  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;
+  &lt;version&gt;2.0.2.RELEASE&lt;/version&gt;
 	&lt;/dependency&gt;
 </code></pre>
 </li>
@@ -231,11 +238,12 @@
 <p><code>$ mvn clean package -DskipTests</code></p>
 </li>
 <li>
-<p>When you deploy your app to PCF it will automatically register with your Eureka Discovery service.</p>
+<p>When you deploy your app to PCF it will automatically register with your Config Server instance.</p>
+<p><code>$ cf push</code></p>
 </li>
 <li>
 <p>Run the following command to view your config server variable:</p>
-<p><code>$ curl https://&lt;YOUR-APP-URL&gt;/which-env</code></p>
+<p><code>$ curl https://&lt;YOUR-APP-FQDN&gt;/which-env</code></p>
 </li>
 <li>
 <p>You should see the value <code>dev</code> returned.</p>
@@ -330,7 +338,7 @@
        preload>
 </audio>
 
-<div class="slide" data-slide="¿">
+<div class="slide" data-slide="?">
     <h2>Keyboard shortcuts</h2>
     <table>
         <thead>
@@ -373,7 +381,7 @@
             <td>Play gong sound</td>
         </tr>
         <tr>
-            <td>ESC</td>
+            <td>x</td>
             <td>Close slide</td>
         </tr>
         <tr>

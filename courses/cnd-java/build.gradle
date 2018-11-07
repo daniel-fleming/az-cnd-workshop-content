@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "io.pivotal.pal.shipkin:shipkin-plugin:7.0.2"
+        classpath "io.pivotal.pal.shipkin:shipkin-plugin:7.3.1"
     }
 }
 
@@ -33,13 +33,14 @@ shipkin {
     ]
 
     theme {
-        mainColor = "#216eb9"
-        linkColor = "#216eb9"
-        accentColor = "#216eb9"
+        mainColor = "#003152"
+        linkColor = "#1B78B3"
+        accentColor = "#00A79D"
         favicon = "/favicon.ico"
 
         slideImage = "=/p.png"
-        logoImage = "/cnd-java-workshop.svg"
+        logoImage = "/pcf.png"
+        headerImage = "/industrials.jpg"
 
     }
 }
