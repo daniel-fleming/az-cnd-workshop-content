@@ -37,6 +37,8 @@ Add service discovery to the sample app.
 1. Add the `@EnableDiscoveryClient` annotation.
 
     ```
+    import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+    ...
     @SpringBootApplication
     @EnableDiscoveryClient
     public class DemoApplication {
@@ -55,7 +57,7 @@ Add service discovery to the sample app.
         instances: 1
         path: target/demo-0.0.1-SNAPSHOT.jar
         services:
-          - svc-discovery
+          - <YOUR-SERVICE-DISCOVERY-NAME>
     ```
 
 1. Open `pom.xml` file in your editor.  Add the following dependency:
@@ -65,7 +67,35 @@ Add service discovery to the sample app.
 	  <groupId>io.pivotal.spring.cloud</groupId>
 	  <artifactId>spring-cloud-services-starter-service-registry</artifactId>
       <version>2.0.2.RELEASE</version>
-	</dependency>
+    </dependency>
+    ```
+
+1. The Spring Cloud Starter for Service Registry has a dependency on Spring Security.  Because our app does not contain security, all endpoints will be protected by HTTP basic authentication.  Let's add some code to disable security for now:
+
+    In `pom.xml`:
+    ```
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+    </dependency>
+    ```
+
+    Create a new class in the base packaged called `SecurityConfiguration`:
+    ```
+    package com.example.demo;
+
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+    @Configuration
+    public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests().anyRequest().permitAll().and().httpBasic().disable().csrf().disable();
+        }
+    }
     ```
 
 1. Build the app using the following command.  Tests won't work locally with service discovery enabled so we will skip them for the workshop.  In a real scenario, you would set up `Spring Profiles` to differentiate between levels:

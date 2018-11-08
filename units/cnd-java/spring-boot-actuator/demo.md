@@ -27,7 +27,7 @@ Add actuator metrics to our sample app.
     ...
     ```
 
-1. Add the following to the bottom of the `application.yml` file:
+1. Add the following to the bottom of the `src/main/resources/application.yml` file:
 
     ```
     ...
